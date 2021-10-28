@@ -1,0 +1,22 @@
+# egg folders
+.eggs/
+eggs/
+*.egg
+*.egg-info/
+
+# Apple files
+*DS_Store*
+
+# Bash scripts folder
+bash_scripts/
+
+# PyCharm files
+.idea/*
+
+# IPython checkpoints
+*.ipynb_checkpoints/*
+
+__pycache__/
+
+# Spyder folder
+.spyproject/
