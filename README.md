@@ -1,7 +1,7 @@
 # changlabXenvision
 This coding exercise was created by members of the [Chang Lab](http://changlab.ucsf.edu/) for internship students with the [ENVISION](https://neurosurgery.ucsf.edu/envision-internship-program) Program at UCSF.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ChangLabUcsf/changlabXenvision/main)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ChangLabUcsf/changlabXenvision/main?filepath=AuditoryProcessing.ipynb)
 
 ## 1. Using Google and Google Chrome
 1. We'll need to use [Google Chrome](https://www.google.com/chrome/) for 
