@@ -83,3 +83,14 @@ you can save your progress as you make changes.
    this step, we'll walk through this at the beginning of the tutorial.
 5. Otherwise, you're all set!
 
+
+## For past ENVISION students
+If you want to access the tutorial that was used during the ENVISION 
+tutorial you participated in, you can switch to the relevant branch.
+
+To do this, find the drop-down menu of branches and select the branch that 
+matches the time you participated in ENVISION (for example, `november_2021`).
+Once you select this branch, you can launch the Binder notebook or download 
+the code as detailed above.
+
+![](media/switching_branches.png)
