@@ -20,7 +20,7 @@ We've described instructions for two ways, each with their own pros and cons.
 ## Using Binder
 
 1. Using Binder is simple, just click this badge :arrow_right:
-    [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ChangLabUcsf/changlabXenvision/main?filepath=AuditoryProcessing.ipynb)
+    [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ChangLabUcsf/changlabXenvision/main?filepath=SpeechInTheBrain.ipynb)
 
 2. A new tab will open and you'll have to wait a few minutes for the notebook 
 to render.
