@@ -261,7 +261,7 @@ def plot_wavform_and_spectrogram(sound, sr, title):
     pass
 
 
-def play_brain_movie(sentence_number=1, speed='normal'):
+def play_brain_movie(sentence_number=1, speed='normal', filename=None):
     """
     Load pre-made .mp4 videos and play them in a Jupyter notebook. Should
     also work when using Google Colab.
@@ -273,28 +273,33 @@ def play_brain_movie(sentence_number=1, speed='normal'):
         can be `1` or `2`.
     speed : str
         The playback speed of the video, either "normal" or "slow".
+    filename : str
+        The name of the file in the `media` folder (with extension). 
+        If this is given, then sentence number and speed are ignored.
 
     Returns
     -------
     Nothing, just displays the movie.
     """
+    
+    if filename is None:
+        # Raises an error if the sentence_number is incorrectly set.
+        if sentence_number not in [1, 2]:
+            raise ValueError(f'Sentence number can only be `1` or `2`, '
+                             f'not {sentence_number}.')
 
-    # Raises an error if the sentence_number is incorrectly set.
-    if sentence_number not in [1, 2]:
-        raise ValueError(f'Sentence number can only be `1` or `2`, '
-                         f'not {sentence_number}.')
-
-    # Translates the speed into degree of speed reduction.
-    if speed == 'normal':
-        speed_int = 1
-    elif speed == 'slow':
-        speed_int = 4
-    else:
-        raise ValueError(f'Speed can only be "normal" or "slow", not {speed}.')
+        # Translates the speed into degree of speed reduction.
+        if speed == 'normal':
+            speed_int = 1
+        elif speed == 'slow':
+            speed_int = 4
+        else:
+            raise ValueError(f'Speed can only be "normal" or "slow", not {speed}.')
+            
+        filename = f'brain_movie_sentence{sentence_number}_with_sound_{speed_int}x.mp4'
 
     # Define the path to the file.
-    movie_path = f'media/brain_movie_sentence{sentence_number}_with_sound_' \
-                 f'{speed_int}x.mp4'
+    movie_path = f'media/{filename}'
 
     # Reads the file and displays in the notebook.
     mp4 = open(movie_path, 'rb').read()
