@@ -110,7 +110,8 @@ def plot_multiple_trial_data(sentence_num=1, electrode_num=0,
 
     # Setup the figure and set the title.
     fig, axs = plt.subplots(5, 1, figsize=(6, 8), sharex=True, sharey=True)
-    axs[0].axes.set(title=data['text'])
+    # axs[0].axes.set(title=data['text'])
+    fig.suptitle(data['text'])
 
     # Draw vertical and horizontal lines for each plot.
     for ax in axs.ravel():
@@ -135,6 +136,78 @@ def plot_multiple_trial_data(sentence_num=1, electrode_num=0,
     axs[0].set_ylabel('Electrical Response')
     axs[0].set_xlabel('Time from start of sentence (s)')
     fig.tight_layout();
+    pass
+
+
+
+def plot_multiple_trial_data_and_avg(sentence_num=1, electrode_num=0,
+                             participant_num=1,n_trials=5):
+    """
+    Plots the first 5 individual trials and average for a given electrode, 
+    sentence, and participant.
+    Copied from plot_multiple_trial_data above
+
+    Parameters
+    ----------
+    sentence_num : int
+        The sentence that the participant was listening to. Defaults to `1`,
+        can be `1` or `2`.
+    electrode_num : int
+        Which electrode's activity to plot. Defaults to `0`, but can be `0`
+        or `1`.
+    participant_num : int
+        Which participant's brain activity to plot. Defaults to `1`, can be
+        `1` or `2`.
+
+    Returns
+    -------
+    Nothing, just displays the plot.
+    """
+
+    # Define the colors for each electrode.
+    colors = sns.color_palette('husl')
+    elec_colors = [colors[0], colors[1]]
+
+    # Load the data.
+    with open(f'data/P{participant_num}_data.pkl', 'rb') as f:
+        data = pickle.load(f)[f'sentence{sentence_num}']
+
+    # Setup the figure and set the title.
+    fig, axs = plt.subplots(1, 1, figsize=(6, 4), sharex=True, sharey=True)
+    ax = axs
+    ax.axes.set(title=data['text'])
+
+    # Draw vertical and horizontal lines for each plot.
+    
+    ax.axhline(y=0, linestyle=':', color='k')
+    ax.axvline(x=0, linestyle=':', color='k')
+
+    # Define the x-values for plotting the brain activity.
+    ecog_time = (np.arange(data['ecog'].shape[1]) / data['ecog_sr']) - 0.5
+
+    # Plot each trial in it's own subplot.
+    
+    for cur_trial in range(n_trials):
+        # Get the brain activity for one trial and the specified electrode.
+        ecog_trial = data['ecog'][cur_trial, :, electrode_num]
+
+        # Plot the single trial and add a title to the subplot with the
+        # trial number.
+        ln1 = ax.plot(ecog_time, ecog_trial,
+                            color=elec_colors[electrode_num],
+                            label=f"Single trial ({n_trials} trials)")
+        
+    ecog_trials = data['ecog'][:, :, electrode_num]
+    avg_trial = np.mean(ecog_trials[range(n_trials),:],axis=0)
+    ln2 = ax.plot(ecog_time, avg_trial, 
+                            color='k',lw=4,
+                            label="Trial average")
+    ax.legend(handles=[ln1[0], ln2[0]])
+    # Add x and y labels.
+    ax.set_ylabel('Electrical Response')
+    ax.set_xlabel('Time from start of sentence (s)')
+    fig.tight_layout();
+    
     pass
 
 
